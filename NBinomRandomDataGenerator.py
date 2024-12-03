@@ -26,8 +26,9 @@ class NBinomRandomDataGenerator(AbstractRandomDataGenerator):
         X = np.hstack((np.ones_like(x), x))
 
         # Generate the p parameter for the negative binomial based on the x's and beta
+        # p represents the probability of success (aka, the probability that your job application leads to an offer)
         # I decided to use a sigmoid
-        p = np.exp(self.beta@(X.T)) / (np.exp(self.beta@(X.T)) + 1)
+        p = np.exp(self.beta@(X.T)) / (np.exp(self.beta@(X.T)) + 1) # Probability of success
 
         # Generate y_star (uncensored data)
         # Each individual has their own nbinom distribution that they face, with their own distinct probability (which, in our perfect world, depends entirely upon their desired salary)
